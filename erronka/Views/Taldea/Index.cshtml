@@ -1,0 +1,123 @@
+﻿@model IEnumerable<erronka.Models.Taldea>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="TaldeaGehitu">Talde berri bat sortu</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.izena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.taldekideak)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sorrera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.diskak)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kontzertuak)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hizkuntza)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.weborria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.izena)
+                </td>
+                <td>
+                    @foreach (var item2 in item.taldekideak)
+                    {
+                        <ul>
+                            <li> @Html.DisplayFor(modelItem => item2)</li>
+                        </ul>
+                    }
+                </td>
+                <td>
+                    @foreach (var item2 in item.generoa)
+                    {
+                        <ul>
+                            <li> @Html.DisplayFor(modelItem => item2)</li>
+                        </ul>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sorrera)
+                </td>
+
+                <td>
+                    @foreach (var item2 in item.diskak)
+                    {
+                        <ul>
+                            <li>
+                                izena: @Html.DisplayFor(modelItem => item2)
+                                @Html.DisplayFor(modelItem => item2.urtea)
+                                @Html.DisplayFor(modelItem => item2.argitaletxea)
+                                @foreach (var item3 in item2.abestiak)
+                                {
+                                    <ul>
+                                        <li>
+                                            @Html.DisplayFor(modelItem => item3)
+
+                                        </li>
+                                    </ul>
+                                }
+                            </li>
+                        </ul>
+                    }
+                </td>
+                <td>
+                    @foreach (var item2 in item.kontzertuak)
+                    {
+                        <ul>
+                            <li> @Html.DisplayFor(modelItem => item2)</li>
+                        </ul>
+                    }
+
+                </td>
+                <td>
+                    @foreach (var item2 in item.hizkuntza)
+                    {
+                        <ul>
+                            <li> @Html.DisplayFor(modelItem => item2)</li>
+                        </ul>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.weborria)
+                </td>
+                <td>
+                    @Html.ActionLink("Xehetasunak", "TaldeaXehetasunak", new { id = item.id }) |
+                    @Html.ActionLink("Aldatu", "TaldeaAldatu", new { id = item.id }) |
+                    @Html.ActionLink("Ezabatu", "TaldeaEzabatu", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

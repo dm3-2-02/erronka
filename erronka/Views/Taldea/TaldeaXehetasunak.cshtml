@@ -1,0 +1,149 @@
+﻿@model erronka.Models.Taldea
+
+@{
+    ViewData["Title"] = "TaldeaXehetasunak";
+    
+}
+
+    <h1>@Html.DisplayNameFor(model => model.izena)</h1>
+
+<div>
+    <h4>@Html.DisplayNameFor(model => model.izena)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.izena)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.izena)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.taldekideak)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (string kidea in Model.taldekideak)
+            {
+                string last = Model.taldekideak.Last();
+                if (kidea.Equals(last))
+                {
+                    @Html.DisplayFor(modelItem => kidea)
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => kidea) <span>, </span>
+                }
+
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.generoa)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (string generoa in Model.generoa)
+            {
+                string last = Model.generoa.Last();
+                if (generoa.Equals(last))
+                {
+                    @Html.DisplayFor(modelItem => generoa)
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => generoa) <span>, </span>
+                }
+
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.sorrera)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.sorrera)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.diskak)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var dis in Model.diskak)
+            {
+                <ul>
+                    <li>
+                        <b>Izena: </b> @Html.DisplayFor(modelItem => dis.izena)
+                        <b> Urtea: </b> @Html.DisplayFor(modelItem => dis.urtea)
+                        <b> Argitaletxea: </b> @Html.DisplayFor(modelItem => dis.argitaletxea)
+
+                        <b> Abestiak: </b>
+                        @foreach (string abestia in dis.abestiak)
+                        {
+                            var last = dis.abestiak.Last();
+                            //string last2 = abestia;
+                            if (abestia.Equals(last))
+                            {
+                        @Html.DisplayFor(modelItem => abestia) <span>.</span>
+                        }
+                        else
+                        {
+                        @Html.DisplayFor(modelItem => abestia) <span>,</span>
+                        }
+
+                        }
+                    </li>
+                </ul>
+             }
+         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.kontzertuak)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var kon in Model.kontzertuak)
+            {
+                var last = Model.kontzertuak.Last();
+                if (kon.Equals(last))
+                {
+
+                    <b>Lekua: </b> @Html.DisplayFor(modelItem => kon.lekua)<b> Eguna: </b> @Html.DisplayFor(modelItem => kon.eguna)<b> Prezioa: </b> @Html.DisplayFor(modelItem => kon.prezioa)<b> Edukiera: </b> @Html.DisplayFor(modelItem => kon.edukiera)
+
+
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => kon) <span>, </span>
+                }
+
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.hizkuntza)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (string hizk in Model.hizkuntza)
+            {
+                string last = Model.hizkuntza.Last();
+                if (hizk.Equals(last))
+                {
+                    @Html.DisplayFor(modelItem => hizk)
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => hizk) <span>, </span>
+                }
+
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.weborria)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.weborria)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
